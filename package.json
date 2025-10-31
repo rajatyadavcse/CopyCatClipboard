@@ -4,7 +4,8 @@
   "description": "A simple Electron clipboard history app for macOS using Cmd+Shift+V",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "node build.js"
   },
   "author": "Rajat Yadav",
   "license": "MIT",
@@ -17,9 +18,13 @@
     "appId": "com.copycat.clipboard",
     "mac": {
       "category": "public.app-category.productivity"
+    },
+    "directories": {
+      "output": "dist"
     }
   },
   "devDependencies": {
+    "electron-installer-dmg": "^5.0.1",
     "electron-rebuild": "^3.2.9"
   }
 }

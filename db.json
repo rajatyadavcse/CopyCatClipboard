@@ -1,4 +1,5 @@
 [
+  "// 🧩 Add a right-click context menu\n  const contextMenu = Menu.buildFromTemplate([\n    {\n      label: 'Show / Hide Clipboard History',\n      click: () => {\n        if (mainWindow.isVisible()) {\n          mainWindow.hide();\n        } else {\n          mainWindow.show();\n        }\n      },\n    },\n    { type: 'separator' },\n    {\n      label: 'Quit CopyCat',\n      click: () => {\n        app.quit();\n      },\n    },\n  ]);\n\n  tray.setContextMenu(contextMenu);",
   "# Node modules\nnode_modules/\n\n# Electron build artifacts\ndist/\nout/\nbuild/\n\n# macOS junk files\n.DS_Store\n\n# Logs\nlogs/\n*.log\n\n# Environment files\n.env\n.env.local\n\n# Packaging output\nrelease/",
   "UP Board",
   "63.20",

@@ -6,6 +6,22 @@ let mainWindow;
 let tray;
 const dbPath = path.join(__dirname, 'db.json');
 
+const gotTheLock = app.requestSingleInstanceLock();
+
+  if (!gotTheLock) {
+    app.quit();
+  } else {
+    app.on('second-instance', () => {
+      // If user tries to open again, focus the existing window instead
+      if (mainWindow) {
+        if (mainWindow.isMinimized()) mainWindow.restore();
+        mainWindow.show();
+        mainWindow.focus();
+      }
+    });
+  }
+
+
 // ---------- Safe DB Loader ----------
 function loadHistory() {
   try {
@@ -29,7 +45,29 @@ function createWindow() {
 
   tray = new Tray(iconPath);
   tray.setToolTip('CopyCat');
+  
+  // 🧩 Add a right-click context menu
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Show / Hide Clipboard History',
+      click: () => {
+        if (mainWindow.isVisible()) {
+          mainWindow.hide();
+        } else {
+          mainWindow.show();
+        }
+      },
+    },
+    { type: 'separator' },
+    {
+      label: 'Quit',
+      click: () => {
+        app.quit();
+      },
+    },
+  ]);
 
+  tray.setContextMenu(contextMenu);
   tray.on('click', () => {
     if (mainWindow.isVisible()) {
       mainWindow.hide();

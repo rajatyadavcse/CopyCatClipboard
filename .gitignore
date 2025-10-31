@@ -20,3 +20,5 @@ logs/
 # Packaging output
 release/
 
+CopyCat-darwin-arm64
+CopyCat.dmg
