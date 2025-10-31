@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CopyCat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --bg: #1e1e1e;
+      --card: #252525;
+      --muted: #bdbdbd;
+      --accent: #007aff;
+      color-scheme: dark;
+    }
+    /* body{height:100%;margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    body{background:var(--bg);color:white;padding:8px;display:flex;flex-direction:column} */
+    /* header{display:flex;align-items:center;justify-content:center;padding:6px 0} */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #2c2c2c;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* make sure it fills the window */
+      overflow: hidden; /* prevent outer scrollbar */
+      border-radius: 12px;
+      -webkit-user-select: none;
+    }
+
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #3a3a3a;
+      padding: 10px 12px;
+      font-size: 14px;
+      flex-shrink: 0; /* <- ensures header doesn't collapse */
+      -webkit-app-region: drag;
+    }
+
+
+    .header-buttons {
+      display: flex;
+      gap: 8px;
+      -webkit-app-region: no-drag; /* allow clicking buttons */
+    }
+
+    #history {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      overflow-y: auto; /* scroll inside this */
+      flex: 1; /* take remaining height */
+    }
+
+
+
+    li{
+      background: #404040;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      margin-right: 6px;
+      cursor: pointer;
+      line-height: 1.4;
+      font-size: 14px;
+      transition: background 0.2s;
+      word-break: break-word;
+    }
+    li:hover {
+      background: linear-gradient(90deg, #3b3b3b 0%, #565555 100%);
+      color: #fff;
+      transform: scale(1.02);
+      transition: all 0.15s ease-in-out;
+    }
+
+
+
+    li.empty {
+      opacity: 0.6;
+      cursor: default;
+      pointer-events: none; /* 👈 disables hover click */
+    }
+
+    li.empty:hover {
+      background: #404040 !important; /* 👈 keep same background */
+      color: #fff !important;
+      transform: none !important;
+    }
+    .toast {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 8px 12px;
+      background: rgba(0,0,0,1);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      z-index: 10;
+      display: none;
+    }
+    #close-btn,
+    #clear-btn {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      background: transparent;
+      border: none;
+      color: #bbb;
+      transition: color 0.2s ease;
+      outline: none;
+    }
+
+    #close-btn {
+      font-size: 20px !important;
+    }
+
+    #close-btn:hover,
+    #clear-btn:hover {
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    .toast {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+  <body>
+    <div class="header">
+      <div>📋 CopyCat Clipboard</div>
+      <div class="header-buttons">
+        <button id="clear-btn">Clear All</button>
+        <button id="close-btn">×</button>
+      </div>
+    </div>
+    <div id="history"></div>
+    <script src="renderer.js"></script>
+    <div id="toast" class="toast">Press ⌘ + V to paste</div>
+  </body>
+</html>
+

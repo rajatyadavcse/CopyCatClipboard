@@ -1,0 +1,15 @@
+[
+  "# Node modules\nnode_modules/\n\n# Electron build artifacts\ndist/\nout/\nbuild/\n\n# macOS junk files\n.DS_Store\n\n# Logs\nlogs/\n*.log\n\n# Environment files\n.env\n.env.local\n\n# Packaging output\nrelease/",
+  "UP Board",
+  "63.20",
+  "57.00",
+  "84.17",
+  "316.00",
+  "1026.00",
+  "505.00",
+  "500.00",
+  "1800.00",
+  "600.00",
+  "हाई स्कूल",
+  "643570102400020"
+]
